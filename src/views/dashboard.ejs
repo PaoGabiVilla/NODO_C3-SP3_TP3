@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard de Superhéroes</title>
+</head>
+<body>
+    <h1>Lista de Superhéroes</h1>
+    <ul>
+        <% superheroes.forEach(hero => { %>
+            <li>
+                <h2><%= hero.nombre %> (<em><%= hero.nombreReal %></em>)</h2>
+                <p><strong>Edad:</strong> <%= hero.edad %></p>
+                <p><strong>Planeta de Origen:</strong> <%= hero.planetaOrigen %></p>
+                <p><strong>Debilidad:</strong> <%= hero.debilidad %></p>
+               
+                
+                <p><strong>Aliados:</strong>
+                    <ul>
+                        <% hero.aliados.forEach(aliado => { %>
+                            <li><%= aliado %></li>
+                        <% }) %>
+                    </ul>
+                </p>
+                <p><strong>Enemigos:</strong>
+                    <ul>
+                        <% hero.enemigos.forEach(enemigo => { %>
+                            <li><%= enemigo %></li>
+                        <% }) %>
+                    </ul>
+                </p>
+                <p><strong>Creador:</strong> <%= hero.creador %></p>
+            </li>
+        <% }); %>
+    </ul>
+</body>
+</html>

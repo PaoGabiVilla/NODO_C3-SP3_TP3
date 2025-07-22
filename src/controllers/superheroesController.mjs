@@ -12,6 +12,7 @@ import {
     eliminarSuperheroePorNombre
 } from '../services/superheroesService.mjs';
 
+
 import { 
     renderizarSuperheroe, 
     renderizarListaSuperheroes 
@@ -69,7 +70,7 @@ export async function obtenerSuperHeroePorIdController(req, res) {
       error: error.message });
   }
 }
-
+/*
 export async function obtenerTodosLosSuperheroesController(req, res) {
   try {
     const superheroes = await obtenerTodosLosSuperheroes();
@@ -80,7 +81,7 @@ export async function obtenerTodosLosSuperheroesController(req, res) {
     res.status(500).send({ mensaje: 'Error al obtener los superhéroes',
       error: error.message });
   }
-}
+}*/
 
 export async function buscarSuperheroesPorAtributoController(req, res) {
   try {
@@ -212,3 +213,13 @@ export async function eliminarSuperheroePorNombreController(req, res){
         res.status(500).send({ mensaje: 'Error al eliminar el superhéroe', error: error.message });
     }
 }
+
+export const obtenerTodosLosSuperheroesController = async (req, res) => {
+  try {
+    const heroes = await obtenerTodosLosSuperheroes(); // Llama al servicio que trae los héroes
+    res.render('dashboard', { superheroes: heroes }); // Renderiza la vista con los datos
+  } catch (error) {
+    console.error('Error al obtener superhéroes:', error);
+    res.status(500).send('Error interno del servidor');
+  }
+};

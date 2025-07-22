@@ -10,6 +10,7 @@
   "author": "Paola Villafañez",
   "license": "ISC",
   "dependencies": {
+    "ejs": "^3.1.10",
     "eslint": "^9.30.1",
     "express": "^5.1.0",
     "express-validator": "^7.2.1",
