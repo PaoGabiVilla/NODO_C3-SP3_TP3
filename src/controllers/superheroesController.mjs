@@ -137,7 +137,7 @@ export async function obtenerSuperheroesMenoresDe30Controller(req, res) {
 }
 
 //Sprint 3 tp1
-export async function crearNuevoSuperheroeController(req, res) {
+/*export async function crearNuevoSuperheroeController(req, res) {
 
     try {
         const datos = req.body;
@@ -153,6 +153,24 @@ export async function crearNuevoSuperheroeController(req, res) {
 
     } catch (error) {
         res.status(500).send({ mensaje: 'error al crear nuevo superheroe', error: error.message })
+    }
+}*/
+
+export async function crearNuevoSuperheroeController(req, res) {
+    try {
+        const datos = req.body; // Obtiene los datos del cuerpo de la solicitud
+        const superheroeCreado = await crearNuevoSuperheroe(datos);
+
+        if (!superheroeCreado) {
+            return res.status(404).send({ mensaje: 'Error al crear superhéroe' });
+        }
+
+        const superheroesActualizados = await obtenerTodosLosSuperheroes();
+        res.render('dashboard', { superheroes: superheroesActualizados, successMessage: '¡Superhéroe creado exitosamente!' });
+    } catch (error) {
+        res.render('dashboard', {
+            errorMessage: 'Hubo un error al crear el superhéroe. Asegúrate de completar todos los campos correctamente.'
+        });
     }
 }
 

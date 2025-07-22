@@ -26,6 +26,7 @@ router.get('/heroes/buscar/:atributo/:valor', buscarSuperheroesPorAtributoContro
 
 //Sprint3TP1
 router.post('/heroes/crear', registerValidationRules(),handleValidationErrors, crearNuevoSuperheroeController);
+router.post('/heroes/agregar', registerValidationRules(),handleValidationErrors, crearNuevoSuperheroeController);
 router.put('/heroes/actualizar/:id', registerValidationRules(),handleValidationErrors, actualizarSuperheroeController);
 router.delete('/heroes/eliminar/id/:id', eliminarSuperheroePorIdController);
 router.delete('/heroes/eliminar/nombre/:nombre', eliminarSuperheroePorNombreController);

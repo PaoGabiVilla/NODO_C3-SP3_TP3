@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Agregar Superhéroe</title>
+    <link rel="stylesheet" href="/styles.css"> <!-- Opcional: tu CSS -->
+</head>
+<body>
+    <h1>Agregar Superhéroe</h1>
+    
+    <form action="/api/heroes/agregar" method="POST">
+        <label for="nombreSuperHeroe">Nombre del Superhéroe:</label><br>
+        <input type="text" id="nombreSuperHeroe" name="nombreSuperHeroe" required><br><br>
+
+        <label for="nombreReal">Nombre Real:</label><br>
+        <input type="text" id="nombreReal" name="nombreReal" required><br><br>
+
+        <label for="edad">Edad:</label><br>
+        <input type="number" id="edad" name="edad" min="0"><br><br>
+
+        <label for="planetaOrigen">Planeta de Origen:</label><br>
+        <input type="text" id="planetaOrigen" name="planetaOrigen"><br><br>
+
+        <label for="debilidad">Debilidad:</label><br>
+        <input type="text" id="debilidad" name="debilidad"><br><br>
+
+        <label for="superpoderes">Superpoderes (separados por coma):</label><br>
+        <input type="text" id="superpoderes" name="superpoderes"><br><br>
+
+        <label for="aliados">Aliados (separados por coma):</label><br>
+        <input type="text" id="aliados" name="aliados"><br><br>
+
+        <label for="enemigos">Enemigos (separados por coma):</label><br>
+        <input type="text" id="enemigos" name="enemigos"><br><br>
+
+        <label for="creador">Creador:</label><br>
+        <input type="text" id="creador" name="creador"><br><br>
+
+        <button type="submit">Guardar Superhéroe</button>
+    </form>
+</body>
+</html>
