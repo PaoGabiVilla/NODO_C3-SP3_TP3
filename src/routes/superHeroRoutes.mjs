@@ -13,7 +13,7 @@ import {
 
 import { registerValidationRules } from '../middlewares/validationRules.mjs';
 import { handleValidationErrors } from '../middlewares/errorMiddleware.mjs';
-
+import { renderizarFormularioEdicionController } from '../controllers/superheroesController.mjs';
 //superHeroRoutes.mjs
 
 const router = express.Router();
@@ -21,14 +21,18 @@ const router = express.Router();
 router.get('/heroes', obtenerTodosLosSuperheroesController);
 router.get('/heroes/mayores-30', obtenerSuperheroesMayoresDe30Controller);
 router.get('/heroes/menores-30', obtenerSuperheroesMenoresDe30Controller);
-router.get('/heroes/:id', obtenerSuperHeroePorIdController);
+router.get("/:id/edit", renderizarFormularioEdicionController);
+
 router.get('/heroes/buscar/:atributo/:valor', buscarSuperheroesPorAtributoController)
 
 //Sprint3TP1
 router.post('/heroes/crear', registerValidationRules(),handleValidationErrors, crearNuevoSuperheroeController);
 router.post('/heroes/agregar', registerValidationRules(),handleValidationErrors, crearNuevoSuperheroeController);
 router.put('/heroes/actualizar/:id', registerValidationRules(),handleValidationErrors, actualizarSuperheroeController);
+router.put('/heroes/:id/editar', registerValidationRules(),handleValidationErrors, actualizarSuperheroeController)
 router.delete('/heroes/eliminar/id/:id', eliminarSuperheroePorIdController);
 router.delete('/heroes/eliminar/nombre/:nombre', eliminarSuperheroePorNombreController);
 
+
+router.get('/heroes/:id', obtenerSuperHeroePorIdController);
 export default router;

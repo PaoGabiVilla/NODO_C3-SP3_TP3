@@ -4,6 +4,8 @@ import { fileURLToPath } from 'url';
 import { connectDB } from './config/dbConfig.mjs';
 import superHeroRoutes from './routes/superHeroRoutes.mjs';
 
+import methodOverride from 'method-override';
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -24,6 +26,8 @@ app.use((req, res) => {
 // Necesario para __dirname en ES Modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+app.use(methodOverride('_method'));
 
 //Configuración EJS como motor de vistas en Express
 app.set('view engine', 'ejs');

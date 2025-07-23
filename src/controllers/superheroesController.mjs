@@ -176,7 +176,7 @@ export async function crearNuevoSuperheroeController(req, res) {
 
 //modificar
 
-export async function actualizarSuperheroeController(req, res) {
+/*export async function actualizarSuperheroeController(req, res) {
 
     try {
         const { id } = req.params;
@@ -195,7 +195,29 @@ export async function actualizarSuperheroeController(req, res) {
     } catch (error) {
         res.status(500).send({ mensaje: 'Error al actualizar el superhéroe', error: error.message });
     }
+}*/
+
+/**
+ * Controlador para actualizar un superhéroe por su ID.
+ */
+export async function actualizarSuperheroeController(req, res) {
+    try {
+        const { id } = req.params;
+        const datosActualizar = req.body;
+
+        const superheroeActualizado = await actualizarSuperheroe(id, datosActualizar);
+        if (!superheroeActualizado) {
+            return res.status(404).send({ mensaje: 'Superhéroe a actualizar no encontrado.' });
+        }
+
+        const superheroesActualizados = await obtenerTodosLosSuperheroes();
+        res.render('dashboard', { superheroes: superheroesActualizados, successMessage: '¡Superhéroe editado exitosamente!' });
+    } catch (error) {
+        res.status(500).send({ mensaje: 'Error al actualizar el superhéroe', error: error.message });
+    }
 }
+
+
 
 export async function eliminarSuperheroePorIdController(req, res) {
     try{
@@ -241,3 +263,20 @@ export const obtenerTodosLosSuperheroesController = async (req, res) => {
     res.status(500).send('Error interno del servidor');
   }
 };
+export async function renderizarFormularioEdicionController(req, res) {
+  try {
+    const { id } = req.params;
+    const superheroe = await obtenerSuperheroePorId(id); // una función que devuelve el superhéroe por su ID
+
+    if (!superheroe) {
+      return res.status(404).send({ mensaje: 'Superhéroe no encontrado' });
+    }
+
+    res.render('editSuperheroe', { superheroe }); // Esto es lo que carga el archivo EJS
+  } catch (error) {
+    res.status(500).send({
+      mensaje: 'Error al cargar el formulario de edición',
+      error: error.message,
+    });
+  }
+}

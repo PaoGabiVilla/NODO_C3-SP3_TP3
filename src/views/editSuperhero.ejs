@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Editar Superhéroe</title>
+</head>
+<body>
+  <h1>Editar Superhéroe</h1>
+
+  <!-- Formulario para editar, usando method-override -->
+  <form action="/api/superheroes/<%= superheroe._id %>?_method=PUT" method="POST">
+        <% /* El campo oculto '_method=PUT' le dice a method-override que trate esta POST como PUT */ %>
+        <% /* La acción apunta a la ruta de actualización con el ID del superhéroe */ %>
+    
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" name="nombre" value="<%= superheroe.nombre %>" required><br><br>
+
+    <label for="nombreReal">Nombre Real:</label>
+    <input type="text" id="nombreReal" name="nombreReal" value="<%= superheroe.nombreReal %>"><br><br>
+
+    <label for="edad">Edad:</label>
+    <input type="number" id="edad" name="edad" value="<%= superheroe.edad %>"><br><br>
+
+    <label for="planetaOrigen">Planeta de Origen:</label>
+    <input type="text" id="planetaOrigen" name="planetaOrigen" value="<%= superheroe.planetaOrigen %>"><br><br>
+
+    <label for="debilidad">Debilidad:</label>
+    <input type="text" id="debilidad" name="debilidad" value="<%= superheroe.debilidad %>"><br><br>
+
+    <label for="superpoderes">Superpoderes (separados por coma):</label>
+    <input type="text" id="superpoderes" name="superpoderes" 
+           value="<%= superheroe.superpoderes ? superheroe.superpoderes.join(', ') : '' %>"><br><br>
+
+    <label for="aliados">Aliados (separados por coma):</label>
+    <input type="text" id="aliados" name="aliados" 
+           value="<%= superheroe.aliados ? superheroe.aliados.join(', ') : '' %>"><br><br>
+
+    <label for="enemigos">Enemigos (separados por coma):</label>
+    <input type="text" id="enemigos" name="enemigos" 
+           value="<%= superheroe.enemigos ? superheroe.enemigos.join(', ') : '' %>"><br><br>
+
+    <label for="creador">Creador:</label>
+    <input type="text" id="creador" name="creador" value="<%= superheroe.creador %>"><br><br>
+
+    <button type="submit">Guardar Cambios</button>
+  </form>
+
+  <br>
+  <a href="/dashboard">← Volver al Da
