@@ -8,12 +8,12 @@
   <h1>Editar Superhéroe</h1>
 
   <!-- Formulario para editar, usando method-override -->
-  <form action="/api/superheroes/<%= superheroe._id %>?_method=PUT" method="POST">
+  <form action="/heroes/<%= superheroe._id %>?_method=PUT" method="POST">
         <% /* El campo oculto '_method=PUT' le dice a method-override que trate esta POST como PUT */ %>
         <% /* La acción apunta a la ruta de actualización con el ID del superhéroe */ %>
     
-    <label for="nombre">Nombre:</label>
-    <input type="text" id="nombre" name="nombre" value="<%= superheroe.nombre %>" required><br><br>
+    <label for="nombreSuperHeroe">Nombre:</label>
+    <input type="text" id="nombreSuperHeroe" name="nombreSuperHeroe" value="<%= superheroe.nombreSuperHeroe %>" required><br><br>
 
     <label for="nombreReal">Nombre Real:</label>
     <input type="text" id="nombreReal" name="nombreReal" value="<%= superheroe.nombreReal %>"><br><br>
@@ -46,4 +46,4 @@
   </form>
 
   <br>
-  <a href="/dashboard">← Volver al Da
+  <a href="/api/heroes">← Volver al Dashboard</a>

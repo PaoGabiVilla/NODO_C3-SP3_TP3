@@ -272,7 +272,7 @@ export async function renderizarFormularioEdicionController(req, res) {
       return res.status(404).send({ mensaje: 'Superhéroe no encontrado' });
     }
 
-    res.render('editSuperheroe', { superheroe }); // Esto es lo que carga el archivo EJS
+    res.render('editSuperhero', { superheroe }); // Esto es lo que carga el archivo EJS
   } catch (error) {
     res.status(500).send({
       mensaje: 'Error al cargar el formulario de edición',
