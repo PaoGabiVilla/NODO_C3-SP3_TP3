@@ -9,8 +9,11 @@ import methodOverride from 'method-override';
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+app.use(express.static('public'));
+
 // Middleware para parsear JSON - para leer JSON
 app.use(express.json());
+
 
 app.use(express.urlencoded({ extended: true })); // 👈 este va después de express.json()
 
