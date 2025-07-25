@@ -6,15 +6,26 @@
 </head>
 <body>
     <h1>Lista de Superhéroes</h1>
+
+    <!--  Botón de crear aquí -->
+    <button onclick="window.location.href='/api/heroes/agregar'" style="margin-left: 5px;">✏️ Crear</button>
+
     <ul>
         <% superheroes.forEach(hero => { %>
             <li>
-                <h2><%= hero.nombre %> (<em><%= hero.nombreReal %></em>)</h2>
+                <h2><%= hero.nombreSuperHeroe %> (<em><%= hero.nombreReal %></em>)</h2>
                 <p><strong>Edad:</strong> <%= hero.edad %></p>
                 <p><strong>Planeta de Origen:</strong> <%= hero.planetaOrigen %></p>
                 <p><strong>Debilidad:</strong> <%= hero.debilidad %></p>
                
-                
+                <p><strong>Poderes:</strong>
+                    <ul>
+                        <% hero.poderes.forEach(poderes => { %>
+                            <li><%= poderes %></li>
+                        <% }) %>
+                    </ul>
+                </p>
+
                 <p><strong>Aliados:</strong>
                     <ul>
                         <% hero.aliados.forEach(aliado => { %>
@@ -31,7 +42,15 @@
                 </p>
                 <p><strong>Creador:</strong> <%= hero.creador %></p>
             <!--  Botón de editar aquí -->
-                <a href="/api/heroes/<%= hero._id %>/edit">✏️ Editar</a>
+              <button onclick="window.location.href='/api/heroes/<%= hero._id %>/edit'" style="margin-left: 5px;">✏️ Editar</button>
+
+            
+            <!--  Botón de eliminar aquí -->
+               <form action="/api/heroes/<%= hero._id %>?_method=DELETE" method="POST" style="display:inline;">
+                    <button type="submit" onclick="return confirm('¿Estás seguro que querés eliminar este héroe?')">🗑️ Eliminar</button>
+                </form>
+
+               
             </li>
                    
         <% }); %>

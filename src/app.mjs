@@ -12,8 +12,12 @@ const PORT = process.env.PORT || 3000;
 // Middleware para parsear JSON - para leer JSON
 app.use(express.json());
 
+app.use(express.urlencoded({ extended: true })); // 👈 este va después de express.json()
+
 // Conexión a MongoDB
 connectDB();
+
+app.use(methodOverride('_method'));
 
 // Configuración de rutas
 app.use('/api', superHeroRoutes);
@@ -27,7 +31,7 @@ app.use((req, res) => {
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-app.use(methodOverride('_method'));
+
 
 //Configuración EJS como motor de vistas en Express
 app.set('view engine', 'ejs');

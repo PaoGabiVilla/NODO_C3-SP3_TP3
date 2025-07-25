@@ -8,7 +8,7 @@
   <h1>Editar Superhéroe</h1>
 
   <!-- Formulario para editar, usando method-override -->
-  <form action="/heroes/<%= superheroe._id %>?_method=PUT" method="POST">
+  <form action="/api/heroes/<%= superheroe._id %>?_method=PUT" method="POST">
         <% /* El campo oculto '_method=PUT' le dice a method-override que trate esta POST como PUT */ %>
         <% /* La acción apunta a la ruta de actualización con el ID del superhéroe */ %>
     
@@ -27,9 +27,9 @@
     <label for="debilidad">Debilidad:</label>
     <input type="text" id="debilidad" name="debilidad" value="<%= superheroe.debilidad %>"><br><br>
 
-    <label for="superpoderes">Superpoderes (separados por coma):</label>
-    <input type="text" id="superpoderes" name="superpoderes" 
-           value="<%= superheroe.superpoderes ? superheroe.superpoderes.join(', ') : '' %>"><br><br>
+    <label for="poderes">Poderes (separados por coma):</label>
+    <input type="text" id="poderes" name="poderes" 
+           value="<%= superheroe.poderes ? superheroe.poderes.join(', ') : '' %>"><br><br>
 
     <label for="aliados">Aliados (separados por coma):</label>
     <input type="text" id="aliados" name="aliados" 
@@ -42,7 +42,7 @@
     <label for="creador">Creador:</label>
     <input type="text" id="creador" name="creador" value="<%= superheroe.creador %>"><br><br>
 
-    <button type="submit">Guardar Cambios</button>
+    <button type="submit" class="btn">Guardar</button>
   </form>
 
   <br>
