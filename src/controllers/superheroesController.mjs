@@ -203,7 +203,7 @@ export async function crearNuevoSuperheroeController(req, res) {
 
 export async function actualizarSuperheroeController(req, res) {
     try {
-      console.log('🛠 Entró a actualizarSuperheroeController con id:', req.params.id);
+      console.log('Entró a actualizarSuperheroeController con id:', req.params.id);
         const { id } = req.params;
         const datosActualizar = req.body;
 
@@ -279,7 +279,9 @@ export async function eliminarSuperheroePorNombreController(req, res){
 export const obtenerTodosLosSuperheroesController = async (req, res) => {
   try {
     const heroes = await obtenerTodosLosSuperheroes(); // Llama al servicio que trae los héroes
-    res.render('dashboard', { superheroes: heroes }); // Renderiza la vista con los datos
+    res.render('dashboard', { superheroes: heroes,
+    successMessage: null // <- esto evita el error
+     }); // Renderiza la vista con los datos
   } catch (error) {
     console.error('Error al obtener superhéroes:', error);
     res.status(500).send('Error interno del servidor');
@@ -305,8 +307,11 @@ export async function renderizarFormularioEdicionController(req, res) {
 
 
 export async function agregarNuevoSuperheroeController(req, res) {
+    //console.log('Iniciando el controlador agregarNuevoSuperheroeController...');
+    
     try {
-        const datos = req.body; // Obtiene los datos del cuerpo de la solicitud
+        const datos = req.body;
+
         const superheroeCreado = await crearNuevoSuperheroe(datos);
 
         if (!superheroeCreado) {
@@ -314,8 +319,18 @@ export async function agregarNuevoSuperheroeController(req, res) {
         }
 
         const superheroesActualizados = await obtenerTodosLosSuperheroes();
-        res.render('dashboard', { superheroes: superheroesActualizados, successMessage: '¡Superhéroe creado exitosamente!' });
+        
+        console.log('✅ Renderizando dashboard con mensaje de éxito');
+        res.render('dashboard', { 
+          
+            superheroes: superheroesActualizados, 
+            successMessage: '¡Superhéroe creado exitosamente!' 
+            
+        });
+        console.log('✅ Superhéroe creado exitosamente:', superheroeCreado);
+
     } catch (error) {
+        console.error('❗ Error al crear superhéroe:', error.message);
         res.render('addSuperhero', {
             errorMessage: 'Hubo un error al crear el superhéroe. Asegúrate de completar todos los campos correctamente.'
         });

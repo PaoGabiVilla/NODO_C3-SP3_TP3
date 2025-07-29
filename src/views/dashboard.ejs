@@ -8,6 +8,12 @@
 <body>
     <h1>Lista de Superhéroes</h1>
 
+    <% if (successMessage) { %>
+        <div id="mensajeExito" style="background-color: #d4edda; color: #155724; padding: 10px; border-radius: 5px; margin-bottom: 20px;">
+        ✅ <strong><%= successMessage %></strong>
+        </div>
+    <% } %>
+
     <!-- Botón para agregar -->
     <button onclick="window.location.href='/api/heroes/agregar'">✏️ Crear</button>
     <br><br>
@@ -66,5 +72,18 @@
             <% }); %>
         </tbody>
     </table>
+    <script>
+  console.log("✅ Dashboard cargado correctamente con <%= superheroes.length %> superhéroes.");
+</script>
+
+<script>
+  const mensaje = document.getElementById('mensajeExito');
+  if (mensaje) {
+    setTimeout(() => {
+      mensaje.style.display = 'none';
+    }, 3000); // 3000 milisegundos = 3 segundos
+  }
+</script>
+
 </body>
 </html>
