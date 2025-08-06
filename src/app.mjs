@@ -8,6 +8,9 @@ import methodOverride from 'method-override';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+// Necesario para __dirname en ES Modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 app.use(express.static('public'));
 
@@ -29,12 +32,6 @@ app.use('/api', superHeroRoutes);
 app.use((req, res) => {
     res.status(404).send({ mensaje: "Ruta no encontrada" });
 });
-
-// Necesario para __dirname en ES Modules
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-
 
 //Configuración EJS como motor de vistas en Express
 app.set('view engine', 'ejs');

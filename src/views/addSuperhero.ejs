@@ -12,10 +12,10 @@
     <form class="add" action="/api/heroes/agregar" method="POST">
         <div>
         <label for="nombreSuperHeroe">Nombre del Superhéroe:</label><br>
-        <input type="text" id="nombreSuperHeroe" name="nombreSuperHeroe" required><br><br>
+        <input type="text" id="nombreSuperHeroe" name="nombreSuperHeroe" required minlength="3" maxlength="60"><br><br>
 
         <label for="nombreReal">Nombre Real:</label><br>
-        <input type="text" id="nombreReal" name="nombreReal" required><br><br>
+        <input type="text" id="nombreReal" name="nombreReal" required minlength="3" maxlength="60"><br><br>
 
         <label for="edad">Edad:</label><br>
         <input type="number" id="edad" name="edad" min="0" required><br><br>
