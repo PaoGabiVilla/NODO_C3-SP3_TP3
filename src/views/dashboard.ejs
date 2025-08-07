@@ -9,10 +9,11 @@
     <h1>Lista de Superhéroes</h1>
 
     <% if (successMessage) { %>
-        <div id="mensajeExito" style="background-color: #d4edda; color: #155724; padding: 10px; border-radius: 5px; margin-bottom: 20px;">
-        ✅ <strong><%= successMessage %></strong>
-        </div>
-    <% } %>
+  <div id="mensajeExito" style="background-color: #d4edda; color: #155724; padding: 10px; margin-bottom: 10px; border-radius: 5px;">
+    <%= successMessage %>
+  </div>
+<% } %>
+
 
     <!-- Botón para agregar -->
     <button onclick="window.location.href='/api/heroes/agregar'">✏️ Crear</button>

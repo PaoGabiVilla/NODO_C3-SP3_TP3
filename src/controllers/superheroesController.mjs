@@ -147,10 +147,12 @@ export async function actualizarSuperheroeController(req, res) {
         const datosActualizar = req.body;
 
         const superheroeActualizado = await actualizarSuperheroe(id, datosActualizar);
+       
         if (!superheroeActualizado) {
             return res.status(404).send({ mensaje: 'Superhéroe a actualizar no encontrado.' });
         }
-        res.redirect('/api/heroes')
+        req.session.successMessage = '¡Superhéroe actualizado exitosamente!';
+        res.redirect('/api/heroes');
     } catch (error) {
         res.status(500).send({ mensaje: 'Error al actualizar el superhéroe', error: error.message });
     }
@@ -166,7 +168,8 @@ export async function eliminarSuperheroePorIdController(req, res) {
         if (!superheroeEliminado) {
             return res.status(404).send({ mensaje: 'Superhéroe a eliminar no encontrado.' });
         }
-        res.redirect('/api/heroes')
+        req.session.successMessage = '¡Superhéroe eliminado exitosamente!';
+        res.redirect('/api/heroes');
     } catch (error) {
         res.status(500).send({ mensaje: 'Error al eliminar el superhéroe', error: error.message });
     }
@@ -174,10 +177,15 @@ export async function eliminarSuperheroePorIdController(req, res) {
 
 export const obtenerTodosLosSuperheroesController = async (req, res) => {
   try {
-    const heroes = await obtenerTodosLosSuperheroes(); // Llama al servicio que trae los héroes
-    res.render('dashboard', { superheroes: heroes,
-    successMessage: null // <- esto evita el error
-     }); // Renderiza la vista con los datos
+    const heroes = await obtenerTodosLosSuperheroes();
+
+    const successMessage = req.session.successMessage || null;
+    req.session.successMessage = null; // Se limpia para que no vuelva a aparecer
+
+    res.render('dashboard', { 
+      superheroes: heroes,
+      successMessage: successMessage 
+    }); 
   } catch (error) {
     console.error('Error al obtener superhéroes:', error);
     res.status(500).send('Error interno del servidor');
@@ -198,7 +206,8 @@ export async function agregarNuevoSuperheroeController(req, res) {
             return res.status(404).send({ mensaje: 'Error al crear superhéroe' });
         }
         //Guarda el mensaje de exito
-        res.redirect('/api/heroes')
+        req.session.successMessage = '¡Superhéroe creado exitosamente!';
+        res.redirect('/api/heroes');
     } catch (error) {
         res.render('addSuperhero', {
             errorMessage: 'Hubo un error al crear el superhéroe. Asegúrate de completar todos los campos correctamente.'

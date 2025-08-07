@@ -5,8 +5,16 @@ import { connectDB } from './config/dbConfig.mjs';
 import superHeroRoutes from './routes/superHeroRoutes.mjs';
 
 import methodOverride from 'method-override';
+import session from 'express-session';
 
 const app = express();
+//Esto es para el mensaje provisorio :o
+app.use(session({
+  secret: 'clave-secreta', // poné algo más seguro en producción
+  resave: false,
+  saveUninitialized: true
+}));
+
 const PORT = process.env.PORT || 3000;
 // Necesario para __dirname en ES Modules
 const __filename = fileURLToPath(import.meta.url);
@@ -41,6 +49,6 @@ app.set('views', path.join(__dirname, 'views'));
 
 // Iniciar el servidor
 app.listen(PORT, () => {
-    console.log('Servidor escuchando en el puerto ${PORT}');
+    console.log(`Servidor escuchando en el puerto ${PORT}`);
 });
 
